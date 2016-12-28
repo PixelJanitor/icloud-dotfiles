@@ -6,7 +6,7 @@ set -e
 cd "$HOME"
 [ ! -L icloud-drive ] && ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs" icloud-drive
 [ ! -L lolbrary ] && ln -s "$HOME/Library" lolbrary
-for link in .gemrc .gitconfig .gitignore_global .profile bin; do
+for link in .gemrc .gitconfig .gitignore_global .hyper.js .profile bin; do
   if [ -L "$HOME/$link" ]; then
     echo "Link '$link' already exists"
   else
@@ -20,10 +20,35 @@ cd "$HOME/.ssh"
 [ ! -L config ] && ln -s ../icloud-drive/dotfiles/.ssh/config .
 cd ..
 
-# Set macOS default hidden settings
+# Set macOS settings ----------------------------------------------------
 
 ## Disabling shadows on windows when taking screenshots - requires killall SystemUIServer
 defaults write com.apple.screencapture disable-shadow -bool true
+
+# Expand Save Panels by Default
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
+
+# Expand Print Panels by Default
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
+
+# Remove default apps from dock
+defaults delete com.apple.dock persistent-apps
+defaults delete com.apple.dock persistent-others
+
+#Set macOS UI to Dark Mode
+defaults write NSGlobalDomain AppleInterfaceStyle Dark
+
+# Prevent Browser from auto-opening downloaded files
+defaults write com.apple.Safari AutoOpenSafeDownloads -bool false
+
+# Set key repeat rates
+defaults write -g InitialKeyRepeat -int 20
+defaults write -g KeyRepeat -int 1
+
+# Restart Dock
+killall Dock
 
 # Install things
 if command -v brew; then
