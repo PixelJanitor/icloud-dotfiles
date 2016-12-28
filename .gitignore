@@ -1,4 +1,2 @@
-/.homebridge/persist
-/.vim/swapfiles
-/.vim/.netrwhist
+.DS_Store
 /secure.dmg

@@ -6,7 +6,7 @@ set -e
 cd "$HOME"
 [ ! -L icloud-drive ] && ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs" icloud-drive
 [ ! -L lolbrary ] && ln -s "$HOME/Library" lolbrary
-for link in .gemrc .gitconfig .gitignore_global .homebridge .profile .vim .vimrc bin; do
+for link in .gemrc .gitconfig .gitignore_global .profile bin; do
   if [ -L "$HOME/$link" ]; then
     echo "Link '$link' already exists"
   else
@@ -33,8 +33,11 @@ else
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
+# git-completion
+curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
+
 # Brew installations
-for pkg in bash-completion git nodenv node-build rbenv ruby-build postgresql wget tree chromedriver phantomjs; do
+for pkg in bash-completion git nodenv node-build rbenv ruby-build postgresql wget yarn; do
   if brew list -1 | grep -q "^${pkg}\$"; then
     echo "Package '$pkg' is installed; updating:"
     brew upgrade "$pkg" --cleanup || true
@@ -82,4 +85,3 @@ fi
 
 # Run profile
 source .profile
-

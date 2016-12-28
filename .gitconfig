@@ -1,11 +1,14 @@
+[user]
+	name = Derek Briggs
+	email = derek.briggs@me.com
+[alias]
+	co = checkout
+	g = git
 [push]
 	default = current
 [branch]
 	autosetuprebase = always
 	autosetupmerge = true
-[user]
-	name = Justin Searls
-	email = searls@gmail.com
 [core]
 	editor = mvim -f
 	excludesfile = /Users/justin/.gitignore_global
