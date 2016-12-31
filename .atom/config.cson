@@ -1,0 +1,18 @@
+"*":
+  autosave:
+    enabled: true
+  core:
+    disabledPackages: [
+      "wrap-guide"
+    ]
+    telemetryConsent: "limited"
+    useCustomTitleBar: true
+  editor:
+    fontFamily: "SFMono-Regular"
+    scrollPastEnd: true
+    showIndentGuide: true
+    showInvisibles: true
+  "exception-reporting":
+    userId: "b05f18f4-e961-90f0-2d75-8d87a54ea3e8"
+  welcome:
+    showOnStartup: false
